@@ -14,7 +14,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/main_screen.png'),
             fit: BoxFit.cover,
@@ -22,15 +22,22 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Column(
           children:<Widget>[
-            SizedBox(height: 30,),
+            const SizedBox(height: 5,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              //mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
+                Container(
+                    child: IconButton(
+                      onPressed: () {  },
+                      iconSize: 130,
+                      icon: Image.asset('assets/count_image.png'),
+                    ),
+                ),
+                SizedBox(width: 110,),
                 Container(
                   child: Align(
                     child: Container(
                       child: Align(
-                        alignment: Alignment(0.1,-0.92) ,
                         child: IconButton(
                           onPressed: () {
                             Navigator.pushReplacement(context,
@@ -48,7 +55,6 @@ class _MainScreenState extends State<MainScreen> {
                   child: Align(
                     child: Container(
                       child: Align(
-                        alignment: Alignment(0.98,-0.92) ,
                         child: IconButton(
                           onPressed: () {
                             SystemNavigator.pop();
@@ -62,20 +68,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 100,),
-            Container(
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    onPressed: () {  },
-                    alignment: Alignment(6,-0.12),
-                    iconSize: 200,
-                    icon: Image.asset('assets/play_button.png'),
-                  ),
-                ],
-              )
-            ),
-            SizedBox(height: 150,),
+            SizedBox(height: 410,),
             Container(
               child: Align(
                 alignment: Alignment(-0.01,-0.92) ,

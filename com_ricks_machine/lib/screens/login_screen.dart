@@ -1,4 +1,5 @@
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
+import 'package:com_ricks_machine/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -109,7 +110,14 @@ class _LogInScreenState extends State<LogInScreen> {
                           }
                       ),
                       SizedBox(height: 70,),
-                      Text("You're new? SignUp", style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),),
+                      InkWell(
+                        child: Text("You're new? SignUp", style: TextStyle(color: Color.fromRGBO(143, 148, 251, 1)),),
+                        onTap: (){
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => SignUpScreen())
+                          );
+                        },
+                      )
                     ],
                   ),
                 )
