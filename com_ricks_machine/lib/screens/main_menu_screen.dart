@@ -1,4 +1,5 @@
 import 'package:com_ricks_machine/screens/setting_screen.dart';
+import 'package:com_ricks_machine/screens/token_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,7 +29,11 @@ class _MainScreenState extends State<MainScreen> {
               children: <Widget>[
                 Container(
                     child: IconButton(
-                      onPressed: () {  },
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => TokenScreen())
+                        );
+                      },
                       iconSize: 130,
                       icon: Image.asset('assets/count_image.png'),
                     ),
