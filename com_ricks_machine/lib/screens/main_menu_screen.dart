@@ -1,4 +1,6 @@
+import 'package:com_ricks_machine/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -30,7 +32,11 @@ class _MainScreenState extends State<MainScreen> {
                       child: Align(
                         alignment: Alignment(0.1,-0.92) ,
                         child: IconButton(
-                          onPressed: () {  },
+                          onPressed: () {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) => SettingsScreen())
+                            );
+                          },
                           iconSize: 50,
                           icon: Image.asset('assets/settings_button.png'),
                         ),
@@ -44,7 +50,9 @@ class _MainScreenState extends State<MainScreen> {
                       child: Align(
                         alignment: Alignment(0.98,-0.92) ,
                         child: IconButton(
-                          onPressed: () {  },
+                          onPressed: () {
+                            SystemNavigator.pop();
+                          },
                           iconSize: 50,
                           icon: Image.asset('assets/close_button.png'),
                         ),
