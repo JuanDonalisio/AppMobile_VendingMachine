@@ -13,7 +13,7 @@ class _FaqsScreenState extends State<FaqsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(65, 71, 105, 5),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children:<Widget> [
             SizedBox(height: 30,),

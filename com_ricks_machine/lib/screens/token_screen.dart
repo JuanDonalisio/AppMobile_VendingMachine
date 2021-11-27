@@ -25,7 +25,7 @@ class _TokenScreenState extends State<TokenScreen> {
                   child: IconButton(
                     onPressed: () {},
                     iconSize: 130,
-                    icon: Image.asset('assets/count_image.png'),
+                    icon: Image.asset('assets/count_withoutplus.png'),
                   ),
                 ),
                 SizedBox(width: 110,),
@@ -59,6 +59,7 @@ class _TokenScreenState extends State<TokenScreen> {
                 ),
               ],
             ),
+            SizedBox(height: 30,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -70,7 +71,7 @@ class _TokenScreenState extends State<TokenScreen> {
                         child: IconButton(
                           onPressed: () {},
                           iconSize: 180,
-                          icon: Image.asset('assets/big_reward_button.png'),
+                          icon: Image.asset('assets/small_reward_button.png'),
                         ),
                       ),
                     ],
@@ -92,6 +93,7 @@ class _TokenScreenState extends State<TokenScreen> {
                 ),
               ],
             ),
+            SizedBox(height: 30,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

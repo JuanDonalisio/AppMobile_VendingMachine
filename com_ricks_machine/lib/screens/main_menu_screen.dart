@@ -1,3 +1,4 @@
+import 'package:com_ricks_machine/screens/buttons_screen.dart';
 import 'package:com_ricks_machine/screens/setting_screen.dart';
 import 'package:com_ricks_machine/screens/token_screen.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,11 @@ class _MainScreenState extends State<MainScreen> {
               child: Align(
                 alignment: Alignment(-0.01,-0.92) ,
                 child: IconButton(
-                  onPressed: () {  },
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => PlayScreen())
+                    );
+                  },
                   iconSize: 200,
                   icon: Image.asset('assets/play_button.png'),
                 ),
