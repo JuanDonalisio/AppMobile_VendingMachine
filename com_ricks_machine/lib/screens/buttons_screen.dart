@@ -13,30 +13,40 @@ class _PlayScreenState extends State<PlayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(65, 71, 105, 5),
-      body: Center(
-        child: Column(
-          children:<Widget> [
-            SizedBox(height: 30,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background_screens_b.png'),
+              fit: BoxFit.cover,
+            )
+        ),
+        child: Container(
+          child: Center(
+            child: Column(
               children:<Widget> [
-                Container(
-                  child: Align(
-                    alignment: Alignment(0.2,0.82) ,
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => MainScreen())
-                        );
-                      },
-                      iconSize: 50,
-                      icon: Image.asset('assets/home_button.png'),
+                SizedBox(height: 30,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children:<Widget> [
+                    Container(
+                      child: Align(
+                        alignment: Alignment(0.2,0.82) ,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) => MainScreen())
+                            );
+                          },
+                          iconSize: 50,
+                          icon: Image.asset('assets/home_button.png'),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

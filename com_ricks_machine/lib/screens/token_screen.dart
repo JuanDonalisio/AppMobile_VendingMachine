@@ -13,8 +13,13 @@ class _TokenScreenState extends State<TokenScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(65, 71, 105, 5),
       body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background_screens_b.png'),
+              fit: BoxFit.cover,
+            )
+        ),
         child: Column(
           children:<Widget>[
             const SizedBox(height: 5,),
