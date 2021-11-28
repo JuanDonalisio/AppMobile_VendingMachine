@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:com_ricks_machine/screens/signup_screen.dart';
+import 'package:com_ricks_machine/screens/splash_screen.dart';
 import 'package:com_ricks_machine/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +14,6 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();

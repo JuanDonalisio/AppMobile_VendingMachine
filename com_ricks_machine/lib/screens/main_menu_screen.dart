@@ -1,8 +1,11 @@
 import 'package:com_ricks_machine/screens/buttons_screen.dart';
+import 'package:com_ricks_machine/screens/login_screen.dart';
 import 'package:com_ricks_machine/screens/setting_screen.dart';
 import 'package:com_ricks_machine/screens/token_screen.dart';
+import 'package:com_ricks_machine/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -29,17 +33,21 @@ class _MainScreenState extends State<MainScreen> {
               //mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => TokenScreen())
-                        );
-                      },
-                      iconSize: 130,
-                      icon: Image.asset('assets/count_image.png'),
+                  child: Align(
+                    child: Container(
+                      child: Align(
+                        child: IconButton(
+                          onPressed: () async{
+                            await authService.signOut();
+
+                          },
+                          iconSize: 50,
+                          icon: Image.asset('assets/logout_button.png'),
+                        ),
+                      ),
                     ),
+                  ),
                 ),
-                SizedBox(width: 110,),
                 Container(
                   child: Align(
                     child: Container(
@@ -57,19 +65,16 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ),
                 ),
+                SizedBox(width: 110,),
                 Container(
-                  child: Align(
-                    child: Container(
-                      child: Align(
-                        child: IconButton(
-                          onPressed: () {
-                            SystemNavigator.pop();
-                          },
-                          iconSize: 50,
-                          icon: Image.asset('assets/close_button.png'),
-                        ),
-                      ),
-                    ),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => TokenScreen())
+                      );
+                    },
+                    iconSize: 130,
+                    icon: Image.asset('assets/count_image.png'),
                   ),
                 ),
               ],
