@@ -1,5 +1,8 @@
 import 'package:com_ricks_machine/screens/login_screen.dart';
+import 'package:com_ricks_machine/screens/main_menu_screen.dart';
+import 'package:com_ricks_machine/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -9,8 +12,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    final authService = Provider.of<AuthService>(context);
+
     return Scaffold(
       //backgroundColor: Color.fromRGBO(30, 34, 38, 5),
         body: SingleChildScrollView(
@@ -88,6 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   border: Border(bottom: BorderSide(color: Colors.grey))
                               ),
                               child: TextField(
+                                controller: emailController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Email",
@@ -98,6 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Container(
                               padding: EdgeInsets.all(8.0),
                               child: TextField(
+                                controller: passwordController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Password",
@@ -125,9 +136,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: Text("Register", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                             ),
                           ),
-                          onTap: (){
+                          onTap: () async{
+                            await authService.createWithEmailAndPassword(emailController.text, passwordController.text);
                             Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) => LogInScreen())
+                                MaterialPageRoute(builder: (context) => MainScreen())
                             );
                           }
                       ),

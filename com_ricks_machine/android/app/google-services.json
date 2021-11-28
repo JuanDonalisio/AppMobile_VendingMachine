@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8378073862",
+    "project_id": "rick-s-machine",
+    "storage_bucket": "rick-s-machine.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8378073862:android:db8bdd46bca15bad905487",
+        "android_client_info": {
+          "package_name": "com.example.com_ricks_machine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8378073862-bc2e26ebf91fg2gt3lvs7567d3j6ml5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtTiAIP80_KXf3lGRpwCR0SaawFgQdfBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8378073862-bc2e26ebf91fg2gt3lvs7567d3j6ml5e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,8 @@
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:com_ricks_machine/screens/signup_screen.dart';
+import 'package:com_ricks_machine/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -9,8 +11,15 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
+    final authService = Provider.of<AuthService>(context);
+
     return Scaffold(
         //backgroundColor: Color.fromRGBO(30, 34, 38, 5),
         body: SingleChildScrollView(
@@ -65,6 +74,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                   border: Border(bottom: BorderSide(color: Colors.grey))
                               ),
                               child: TextField(
+                                controller: emailController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Email",
@@ -75,6 +85,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             Container(
                               padding: EdgeInsets.all(8.0),
                               child: TextField(
+                                controller: passwordController,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: "Password",
@@ -103,6 +114,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             ),
                           ),
                           onTap: (){
+                            if(authService.signInWithEmailAndPassword(emailController.text, passwordController.text)==true)
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) => MainScreen())
                             );
