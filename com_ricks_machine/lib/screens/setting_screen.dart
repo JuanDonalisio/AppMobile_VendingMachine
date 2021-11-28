@@ -1,3 +1,4 @@
+import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/screens/faqs_screen.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  String light_image = 'assets/light_on_button.png';
-  String volume_image = 'assets/volume_on_button.png';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
