@@ -1,11 +1,14 @@
 import 'package:com_ricks_machine/screens/buttons_screen.dart';
 import 'package:com_ricks_machine/screens/login_screen.dart';
 import 'package:com_ricks_machine/screens/setting_screen.dart';
+import 'package:com_ricks_machine/screens/splash_screen.dart';
 import 'package:com_ricks_machine/screens/token_screen.dart';
 import 'package:com_ricks_machine/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
+import 'main.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -38,8 +41,14 @@ class _MainScreenState extends State<MainScreen> {
                       child: Align(
                         child: IconButton(
                           onPressed: () async{
-                            await authService.signOut();
-
+                            //await authService.signOut();
+                            FirebaseAuth auth = FirebaseAuth.instance;
+                            auth.signOut().then((res) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => SplashScreen()),
+                              );
+                            });
                           },
                           iconSize: 50,
                           icon: Image.asset('assets/logout_button.png'),

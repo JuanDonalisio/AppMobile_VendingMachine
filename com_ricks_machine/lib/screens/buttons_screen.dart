@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
+import 'package:com_ricks_machine/screens/token_screen.dart';
 import 'package:flutter/material.dart';
 
 class PlayScreen extends StatefulWidget {
@@ -24,13 +26,25 @@ class _PlayScreenState extends State<PlayScreen> {
           child: Center(
             child: Column(
               children:<Widget> [
-                SizedBox(height: 30,),
+                SizedBox(height: 5,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children:<Widget> [
                     Container(
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => TokenScreen())
+                          );
+                        },
+                        iconSize: 130,
+                        icon: Image.asset('assets/count_image.png'),
+                      ),
+                    ),
+                    SizedBox(width: 180,),
+                    Container(
                       child: Align(
-                        alignment: Alignment(0.2,0.82) ,
+                        alignment: Alignment(0.2,0.82),
                         child: IconButton(
                           onPressed: () {
                             Navigator.pushReplacement(context,
@@ -43,6 +57,96 @@ class _PlayScreenState extends State<PlayScreen> {
                       ),
                     ),
                   ],
+                ),
+                Center(
+                  child: CarouselSlider(
+                    options: CarouselOptions(
+                      height: 600,
+                      enlargeCenterPage: true,
+                      enableInfiniteScroll: false,
+                      autoPlay: true,
+                    ),
+                    items: [
+                      Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/gomitas.png'),
+                                fit: BoxFit.fitWidth
+                            )
+                        ),
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 300),
+                                child: Center(
+                                  child: Container(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      iconSize: 180,
+                                      icon: Image.asset('assets/buy_button.png'),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/alfajor.png'),
+                                fit: BoxFit.fitWidth
+                            )
+                        ),
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 300),
+                                child: Center(
+                                  child: Container(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      iconSize: 180,
+                                      icon: Image.asset('assets/buy_button.png'),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/choco.png'),
+                                fit: BoxFit.fitWidth
+                            )
+                        ),
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              child: Container(
+                                margin: EdgeInsets.only(top: 300),
+                                child: Center(
+                                  child: Container(
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      iconSize: 180,
+                                      icon: Image.asset('assets/buy_button.png'),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
