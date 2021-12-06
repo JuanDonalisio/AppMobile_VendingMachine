@@ -72,14 +72,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () async {
-                            await get(Uri.parse('192.168.1.2:5000/volumen'));
-                            setState(() {
+                          onPressed: () {
+                            setState(() async {
                               if(volume_image == 'assets/volume_on_button.png'){
                                 volume_image = 'assets/volume_off_button.png';
+                                await get(Uri.parse('192.168.1.2:5000/apagar_musica'));
                               }
                               else{
                                 volume_image = 'assets/volume_on_button.png';
+                                await get(Uri.parse('192.168.1.2:5000/prender_musica'));
                               }
                             });
                           },
@@ -100,14 +101,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () async {
-                            await get(Uri.parse('192.168.1.2:5000/luces'));
-                            setState(() {
+                          onPressed: () {
+                            setState(() async {
                               if(light_image == 'assets/light_on_button.png'){
                                 light_image = 'assets/light_off_button.png';
+                                await get(Uri.parse('192.168.1.2:5000/apagar_luces'));
                               }
                               else{
                                 light_image = 'assets/light_on_button.png';
+                                await get(Uri.parse('192.168.1.2:5000/prender_luces'));
                               }
                             });
                           },
