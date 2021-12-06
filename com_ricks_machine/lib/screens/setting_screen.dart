@@ -2,6 +2,8 @@ import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/screens/faqs_screen.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -70,7 +72,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            await get(Uri.parse('192.168.1.2:5000/volumen'));
                             setState(() {
                               if(volume_image == 'assets/volume_on_button.png'){
                                 volume_image = 'assets/volume_off_button.png';
@@ -97,7 +100,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            await get(Uri.parse('192.168.1.2:5000/luces'));
                             setState(() {
                               if(light_image == 'assets/light_on_button.png'){
                                 light_image = 'assets/light_off_button.png';

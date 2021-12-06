@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:com_ricks_machine/screens/token_screen.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart';
 
 class PlayScreen extends StatefulWidget {
   const PlayScreen({Key? key}) : super(key: key);
@@ -82,7 +84,9 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Center(
                                   child: Container(
                                     child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        await get(Uri.parse('192.168.1.2:5000/item3'));
+                                      },
                                       iconSize: 180,
                                       icon: Image.asset('assets/buy_button.png'),
                                     ),
@@ -108,7 +112,9 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Center(
                                   child: Container(
                                     child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        await get(Uri.parse('192.168.1.2:5000/item2'));
+                                      },
                                       iconSize: 180,
                                       icon: Image.asset('assets/buy_button.png'),
                                     ),
@@ -134,7 +140,9 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Center(
                                   child: Container(
                                     child: IconButton(
-                                      onPressed: () {},
+                                      onPressed: () async {
+                                        await get(Uri.parse('192.168.1.2:5000/item3'));
+                                      },
                                       iconSize: 180,
                                       icon: Image.asset('assets/buy_button.png'),
                                     ),
