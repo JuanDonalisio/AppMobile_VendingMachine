@@ -84,8 +84,8 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Center(
                                   child: Container(
                                     child: IconButton(
-                                      onPressed: () async {
-                                        await get(Uri.parse('192.168.1.2:5000/item3'));
+                                      onPressed: ()  {
+                                         get(Uri.parse('http://192.168.1.2:5000/item1'));
                                       },
                                       iconSize: 180,
                                       icon: Image.asset('assets/buy_button.png'),
@@ -112,8 +112,8 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Center(
                                   child: Container(
                                     child: IconButton(
-                                      onPressed: () async {
-                                        await get(Uri.parse('192.168.1.2:5000/item2'));
+                                      onPressed: ()  {
+                                         get(Uri.parse('http://192.168.1.2:5000/item2'));
                                       },
                                       iconSize: 180,
                                       icon: Image.asset('assets/buy_button.png'),
@@ -140,8 +140,8 @@ class _PlayScreenState extends State<PlayScreen> {
                                 child: Center(
                                   child: Container(
                                     child: IconButton(
-                                      onPressed: () async {
-                                        await get(Uri.parse('192.168.1.2:5000/item3'));
+                                      onPressed: ()  {
+                                         get(Uri.parse('http://192.168.1.2:5000/item3'));
                                       },
                                       iconSize: 180,
                                       icon: Image.asset('assets/buy_button.png'),
