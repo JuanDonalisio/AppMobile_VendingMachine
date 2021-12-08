@@ -1,6 +1,7 @@
 import 'package:com_ricks_machine/screens/faqs_screen.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 
 class TokenScreen extends StatefulWidget {
   const TokenScreen({Key? key}) : super(key: key);
@@ -74,7 +75,14 @@ class _TokenScreenState extends State<TokenScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            PaymentResult result= await MercadoPagoMobileCheckout.startCheckout(
+                                "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
+                                "181626851-6c8ce817-50bd-4d0e-8bd2-c28fbd82784a");
+                            if(result.result.toString() == "done"){
+                              print("Frederik");
+                            }
+                          },
                           iconSize: 180,
                           icon: Image.asset('assets/small_reward_button.png'),
                         ),
@@ -88,7 +96,14 @@ class _TokenScreenState extends State<TokenScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            PaymentResult result= await MercadoPagoMobileCheckout.startCheckout(
+                                "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
+                                "181626851-a8a67879-604a-49a2-8a7b-c1172b5ca0fc");
+                            if(result.result.toString() == "done"){
+                              print("Frederik");
+                            }
+                          },
                           iconSize: 180,
                           icon: Image.asset('assets/medium_reward_button.png'),
                         ),
@@ -108,7 +123,14 @@ class _TokenScreenState extends State<TokenScreen> {
                     children: <Widget>[
                       Align(
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            PaymentResult result= await MercadoPagoMobileCheckout.startCheckout(
+                                "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
+                                "181626851-cecc7057-514d-4825-aa91-ccccb2df6a7a");
+                            if(result.result.toString() == "done"){
+                              print("Frederik");
+                            }
+                          },
                           iconSize: 180,
                           icon: Image.asset('assets/big_reward_button.png'),
                         ),
