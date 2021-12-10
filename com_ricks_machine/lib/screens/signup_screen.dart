@@ -1,8 +1,11 @@
+import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/screens/login_screen.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:com_ricks_machine/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -12,7 +15,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-
+  CollectionReference users = FirebaseFirestore.instance.collection("users");
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -137,10 +140,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                           onTap: () async{
-                            await authService.createWithEmailAndPassword(emailController.text, passwordController.text);
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) => MainScreen())
-                            );
+                            if(passwordController.text.length > 5){
+                              users.doc(emailController.text).set({'tokens': your_tokens});
+                              await authService.createWithEmailAndPassword(emailController.text, passwordController.text);
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(builder: (context) => MainScreen())
+                              );
+                            }
+                            else{
+                              //añadir alerta
+                            }
                           }
                       ),
                       SizedBox(height: 20,),

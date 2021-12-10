@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/screens/faqs_screen.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 
@@ -11,6 +14,8 @@ class TokenScreen extends StatefulWidget {
 }
 
 class _TokenScreenState extends State<TokenScreen> {
+  CollectionReference users = FirebaseFirestore.instance.collection("users");
+  final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +85,7 @@ class _TokenScreenState extends State<TokenScreen> {
                                 "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
                                 "181626851-6c8ce817-50bd-4d0e-8bd2-c28fbd82784a");
                             if(result.result.toString() == "done"){
-                              print("Frederik");
+                              users.doc(auth.currentUser!.email.toString()).update({'tokens': your_tokens + 10});
                             }
                           },
                           iconSize: 180,
@@ -101,7 +106,7 @@ class _TokenScreenState extends State<TokenScreen> {
                                 "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
                                 "181626851-a8a67879-604a-49a2-8a7b-c1172b5ca0fc");
                             if(result.result.toString() == "done"){
-                              print("Frederik");
+                              users.doc(auth.currentUser!.email.toString()).update({'tokens': your_tokens + 25});
                             }
                           },
                           iconSize: 180,
@@ -128,7 +133,7 @@ class _TokenScreenState extends State<TokenScreen> {
                                 "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
                                 "181626851-cecc7057-514d-4825-aa91-ccccb2df6a7a");
                             if(result.result.toString() == "done"){
-                              print("Frederik");
+                              users.doc(auth.currentUser!.email.toString()).update({'tokens': your_tokens + 50});
                             }
                           },
                           iconSize: 180,
