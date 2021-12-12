@@ -1,6 +1,9 @@
-class User{
+import 'package:flutter/foundation.dart';
+
+class User extends ChangeNotifier{
   final String uid;
   final String? email;
 
-  User(this.uid,this.email);
+  User({required this.uid,required this.email,});
+
 }

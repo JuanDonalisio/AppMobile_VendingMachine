@@ -1,13 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/models/user_modelo.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/foundation.dart';
 
-class AuthService{
+class AuthService {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
-  User? _userFromFirebase(auth.User? user){
-    if(user == null){
+  User? _userFromFirebase(auth.User? user) {
+    if(user == null) {
       return null;
     }
-    return User(user.uid,user.email);
+
+    return User(uid: user.uid,email: user.email);
+
   }
 
   Stream<User?>? get user{

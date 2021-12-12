@@ -1,3 +1,4 @@
+import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/screens/buttons_screen.dart';
 import 'package:com_ricks_machine/screens/login_screen.dart';
 import 'package:com_ricks_machine/screens/setting_screen.dart';
@@ -12,7 +13,6 @@ import 'main.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
-
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -31,10 +31,11 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Column(
           children:<Widget>[
-            const SizedBox(height: 5,),
+            const SizedBox(height: 32,),
             Row(
               //mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
+                SizedBox(height: 5,),
                 Container(
                   child: Align(
                     child: Container(
@@ -75,20 +76,41 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
                 SizedBox(width: 110,),
-                Container(
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => TokenScreen())
-                      );
-                    },
-                    iconSize: 130,
-                    icon: Image.asset('assets/count_image.png'),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => TokenScreen())
+                    );
+                  },
+                  child: Container(
+                    child:  Stack(children:[ Image.asset('assets/count_image.png', scale: 1.8),
+                      Positioned(
+                          top: 16,
+                          left: 45,
+                          child: FutureBuilder(
+                              future: getTokens(),
+                              builder: (context, AsyncSnapshot token) {
+                                switch (token.connectionState) {
+                                  case ConnectionState.waiting: return CircularProgressIndicator();
+                                  default:
+                                    if (token.hasError) {
+                                      return Container();
+                                    }
+                                    if(token.hasData){
+                                      return Text(token.data.toString(), style: TextStyle(color: Color.fromRGBO(52, 52, 52, 4), fontSize: 15,fontFamily: 'PressStart2P'));
+                                    }
+                                    else {
+                                      return Text(token.data.toString(), style: TextStyle(color: Color.fromRGBO(52, 52, 52, 4), fontSize: 15,fontFamily: 'PressStart2P'));
+                                    }}
+                              }
+                          ))
+                    ]),
                   ),
                 ),
+
               ],
             ),
-            SizedBox(height: 410,),
+            SizedBox(height: 465,),
             Container(
               child: Align(
                 alignment: Alignment(-0.01,-0.92) ,

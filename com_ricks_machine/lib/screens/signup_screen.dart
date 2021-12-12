@@ -141,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           onTap: () async{
                             if(passwordController.text.length > 5){
-                              users.doc(emailController.text).set({'tokens': your_tokens});
+                              users.doc(emailController.text).set({'tokens': 0});
                               await authService.createWithEmailAndPassword(emailController.text, passwordController.text);
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(builder: (context) => MainScreen())

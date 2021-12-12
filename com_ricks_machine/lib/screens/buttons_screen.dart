@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:com_ricks_machine/models/global_variables.dart';
 import 'package:com_ricks_machine/screens/main_menu_screen.dart';
 import 'package:com_ricks_machine/screens/token_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class PlayScreen extends StatefulWidget {
 }
 
 class _PlayScreenState extends State<PlayScreen> {
+  CollectionReference users = FirebaseFirestore.instance.collection("users");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,19 +31,41 @@ class _PlayScreenState extends State<PlayScreen> {
           child: Center(
             child: Column(
               children:<Widget> [
-                SizedBox(height: 5,),
+                SizedBox(height: 35,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children:<Widget> [
-                    Container(
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) => TokenScreen())
-                          );
-                        },
-                        iconSize: 130,
-                        icon: Image.asset('assets/count_image.png'),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => TokenScreen())
+                        );
+                      },
+                      child: Container(
+                        child:  Stack(children:[ Image.asset('assets/count_image.png', scale: 1.8),
+                          Positioned(
+                              top: 16,
+                              left: 45,
+                              child: FutureBuilder(
+                                  future: getTokens(),
+                                  builder: (context, AsyncSnapshot token) {
+                                    switch (token.connectionState) {
+                                      case ConnectionState.waiting: return CircularProgressIndicator();
+                                      default:
+                                        if (token.hasError) {
+                                          return Container();
+                                        }
+                                        if(token.hasData){
+                                          return Text(token.data.toString(),
+                                              style: TextStyle(color: Color.fromRGBO(52, 52, 52, 4), fontSize: 15,fontFamily: 'PressStart2P'));
+                                        }
+                                        else {
+                                          return Text(token.data.toString(),
+                                              style: TextStyle(color: Color.fromRGBO(52, 52, 52, 4), fontSize: 20,fontFamily: 'PressStart2P'));
+                                        }}
+                                  }
+                              ))
+                        ]),
                       ),
                     ),
                     SizedBox(width: 180,),
@@ -85,6 +110,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                   child: Container(
                                     child: IconButton(
                                       onPressed: ()  {
+                                         users.doc(auth.currentUser!.email.toString()).update({'tokens': FieldValue.increment(-50)});
                                          get(Uri.parse('http://192.168.1.2:5000/item1'));
                                       },
                                       iconSize: 180,
@@ -113,6 +139,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                   child: Container(
                                     child: IconButton(
                                       onPressed: ()  {
+                                        users.doc(auth.currentUser!.email.toString()).update({'tokens': FieldValue.increment(-100)});
                                          get(Uri.parse('http://192.168.1.2:5000/item2'));
                                       },
                                       iconSize: 180,
@@ -141,6 +168,7 @@ class _PlayScreenState extends State<PlayScreen> {
                                   child: Container(
                                     child: IconButton(
                                       onPressed: ()  {
+                                         users.doc(auth.currentUser!.email.toString()).update({'tokens': FieldValue.increment(-150)});
                                          get(Uri.parse('http://192.168.1.2:5000/item3'));
                                       },
                                       iconSize: 180,

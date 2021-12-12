@@ -8,7 +8,6 @@ import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 
 class TokenScreen extends StatefulWidget {
   const TokenScreen({Key? key}) : super(key: key);
-
   @override
   _TokenScreenState createState() => _TokenScreenState();
 }
@@ -16,6 +15,7 @@ class TokenScreen extends StatefulWidget {
 class _TokenScreenState extends State<TokenScreen> {
   CollectionReference users = FirebaseFirestore.instance.collection("users");
   final FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,18 +28,37 @@ class _TokenScreenState extends State<TokenScreen> {
         ),
         child: Column(
           children:<Widget>[
-            const SizedBox(height: 5,),
+            SizedBox(height: 40,),
             Row(
               //mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  child: IconButton(
-                    onPressed: () {},
-                    iconSize: 130,
-                    icon: Image.asset('assets/count_withoutplus.png'),
-                  ),
+                  child:  Stack(children:[ Image.asset('assets/count_withoutplus.png', scale: 1.8),
+                    Positioned(
+                        top: 15,
+                        left: 55,
+                        child: FutureBuilder(
+                            future: getTokens(),
+                            builder: (context, AsyncSnapshot token) {
+                              switch (token.connectionState) {
+                                case ConnectionState.waiting: return CircularProgressIndicator();
+                                default:
+                                  if (token.hasError) {
+                                    return Container();
+                                  }
+                                  if(token.hasData){
+                                    return Text(token.data.toString(),
+                                        style: TextStyle(color: Color.fromRGBO(52, 52, 52, 4), fontSize: 15,fontFamily: 'PressStart2P'));
+                                  }
+                                  else {
+                                    return Text(token.data.toString(),
+                                        style: TextStyle(color: Color.fromRGBO(52, 52, 52, 4), fontSize: 15,fontFamily: 'PressStart2P'));
+                                  }}
+                            }
+                        ))
+                  ]),
                 ),
-                SizedBox(width: 110,),
+                SizedBox(width: 120,),
                 Container(
                   child: Align(
                     alignment: Alignment(0.2,0.82) ,
@@ -85,7 +104,7 @@ class _TokenScreenState extends State<TokenScreen> {
                                 "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
                                 "181626851-6c8ce817-50bd-4d0e-8bd2-c28fbd82784a");
                             if(result.result.toString() == "done"){
-                              users.doc(auth.currentUser!.email.toString()).update({'tokens': your_tokens + 10});
+                              users.doc(auth.currentUser!.email.toString()).update({'tokens': FieldValue.increment(10)});
                             }
                           },
                           iconSize: 180,
@@ -106,7 +125,7 @@ class _TokenScreenState extends State<TokenScreen> {
                                 "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
                                 "181626851-a8a67879-604a-49a2-8a7b-c1172b5ca0fc");
                             if(result.result.toString() == "done"){
-                              users.doc(auth.currentUser!.email.toString()).update({'tokens': your_tokens + 25});
+                              users.doc(auth.currentUser!.email.toString()).update({'tokens': FieldValue.increment(25)});
                             }
                           },
                           iconSize: 180,
@@ -133,7 +152,7 @@ class _TokenScreenState extends State<TokenScreen> {
                                 "TEST-7189f6dc-61c0-4ea9-8fa7-d3a0148668cc",
                                 "181626851-cecc7057-514d-4825-aa91-ccccb2df6a7a");
                             if(result.result.toString() == "done"){
-                              users.doc(auth.currentUser!.email.toString()).update({'tokens': your_tokens + 50});
+                              users.doc(auth.currentUser!.email.toString()).update({'tokens': FieldValue.increment(50)});
                             }
                           },
                           iconSize: 180,
